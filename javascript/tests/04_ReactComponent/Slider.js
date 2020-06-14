@@ -1,6 +1,7 @@
 import React from 'react';
 import './slider.scss';
 import Slide from './Slide';
+
 /**
  * @type {React.Component}
  *
@@ -15,7 +16,7 @@ import Slide from './Slide';
  * c. The Slider should be able to take different types of slides. For example,
  * it could be a single image or a set of tiles. Reference Beatport.com for an example
  */
-export default class Slider extends React.Component {
+class Slider extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -36,19 +37,13 @@ export default class Slider extends React.Component {
 	}
 
 	componentWillUnmount() {
-		console.log('componentWillUnmount');
-
 		clearInterval(this.state.timer);
-		console.log(this.state.timer);
 	}
 
 	play() {
-		console.log('play');
 		setTimeout(() => {
 			const timer = setInterval(() => {
-				console.log('timer runnning');
 				const firstSlide = this.state.slides.shift();
-				// debugger;
 				this.setState({
 					slides: [...this.state.slides, firstSlide]
 				});
@@ -62,7 +57,6 @@ export default class Slider extends React.Component {
 	}
 
 	pause() {
-		console.log('pause');
 		clearInterval(this.state.timer);
 		this.setState({
 			showButtons: { display: 'block' }
@@ -71,13 +65,11 @@ export default class Slider extends React.Component {
 
 	prevNext(action) {
 		if (action === 'prev') {
-			console.log('prev');
 			const lastSlide = this.state.slides.pop();
 			this.setState({
 				slides: [lastSlide, ...this.state.slides]
 			});
 		} else {
-			console.log('next');
 			const firstSlide = this.state.slides.shift();
 			this.setState({
 				slides: [...this.state.slides, firstSlide]
@@ -88,7 +80,7 @@ export default class Slider extends React.Component {
 	render() {
 		return (
 			<div
-				className={`slider ${this.customClass}`}
+				className={`slider ${this.state.customClass}`}
 				onMouseEnter={this.pause}
 				onMouseLeave={this.play}
 			>
@@ -120,3 +112,5 @@ const PrevNext = ({ action, handler, icon, showButtons }) => (
 		{icon}
 	</button>
 );
+
+export default Slider;
