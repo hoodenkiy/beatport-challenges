@@ -31,7 +31,6 @@ export const integrationFunctions = integrationConfig => {
 	const apiFunctions = {};
 
 	for (const key in integrationConfig) {
-		// do not need to declare a let here, leaving for readability
 		let methods = integrationConfig[key].methods;
 		let url = integrationConfig[key].url;
 
@@ -39,7 +38,6 @@ export const integrationFunctions = integrationConfig => {
 
 		methods.forEach(method => {
 			apiFunctions[key][method] = (id, config) => {
-				// put into separate function
 				const urlWithParams = new URL(url);
 				const param = urlWithParams.pathname.match(/.*:(.*)\//);
 

@@ -7,11 +7,10 @@
  * @returns {Object}
  */
 
-var prefixFlattenObject = (obj, prefix = '') => {
-	debugger;
+const prefixFlattenObject = (obj, prefix = '') => {
 	const flattenedObject = {};
+
 	function flatten(obj, prefix) {
-		debugger;
 		for (let key in obj) {
 			if (
 				obj[key] === Object(obj[key]) &&
@@ -27,11 +26,13 @@ var prefixFlattenObject = (obj, prefix = '') => {
 			}
 		}
 	}
+
 	flatten(obj, prefix);
+
 	return flattenedObject;
 };
 
-var input = {
+const input = {
 	prop0: 'value0',
 	prop1: {
 		nested0: 'nv0',

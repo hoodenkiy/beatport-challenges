@@ -4,15 +4,15 @@ const initResize = () => {
 	trigger.addEventListener('mousedown', () => {
 		document.addEventListener('mousemove', startResizingPanel);
 	});
+};
 
-	const startResizingPanel = event => {
-		document.addEventListener('mouseup', () => {
-			document.removeEventListener('mousemove', startResizingPanel);
-		});
+const startResizingPanel = event => {
+	document.addEventListener('mouseup', () => {
+		document.removeEventListener('mousemove', startResizingPanel);
+	});
 
-		const panel = document.getElementById('panel');
-		panel.style.height = window.innerHeight - event.clientY + 'px';
-	};
+	const panel = document.getElementById('panel');
+	panel.style.height = window.innerHeight - event.clientY + 'px';
 };
 
 window.initResize = initResize;

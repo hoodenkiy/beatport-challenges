@@ -5,13 +5,7 @@ import sliderData from './slider-data';
 
 describe('Slider', () => {
 	it('mounts', () => {
-		const container = mount(
-			<Slider
-				sliderData={sliderData}
-				interval={3000}
-				customClass="radiohead-slider"
-			/>
-		);
+		const container = mount(<Slider sliderData={sliderData} />);
 		expect(container.find('.slider').exists()).toBe(true);
 	});
 });
