@@ -24,14 +24,14 @@ export const fetch = (url, method, config) =>
  * @returns {Object}
  */
 export const integrationFunctions = integrationConfig => {
-	// eslint-disable-line no-unused-vars
-	// Write your solution here
 	if (!integrationConfig) {
 		return;
 	}
+
 	const apiFunctions = {};
 
 	for (const key in integrationConfig) {
+		// do not need to declare a let here, leaving for readability
 		let methods = integrationConfig[key].methods;
 		let url = integrationConfig[key].url;
 
@@ -39,8 +39,10 @@ export const integrationFunctions = integrationConfig => {
 
 		methods.forEach(method => {
 			apiFunctions[key][method] = (id, config) => {
+				// put into separate function
 				const urlWithParams = new URL(url);
 				const param = urlWithParams.pathname.match(/.*:(.*)\//);
+
 				if (param) {
 					const path = urlWithParams.pathname.match(/(.*):/)[1];
 					url = `${urlWithParams.origin}${path}${id.id}/`;
@@ -50,8 +52,6 @@ export const integrationFunctions = integrationConfig => {
 			};
 		});
 	}
-
-	console.log(apiFunctions);
 
 	return apiFunctions;
 };

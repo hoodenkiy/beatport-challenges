@@ -1,10 +1,18 @@
 const initResize = () => {
-    /**
-     * Implement a function that handles JavaScript events. When the user clicks
-     * and drags the `resize` node, its parent node `panel` should grow or shrink
-     * vertically.
-     */
-    const resize = document.getElementById('resize');
+	const trigger = document.getElementById('resize');
+
+	trigger.addEventListener('mousedown', () => {
+		document.addEventListener('mousemove', startResizingPanel);
+	});
+
+	const startResizingPanel = event => {
+		document.addEventListener('mouseup', () => {
+			document.removeEventListener('mousemove', startResizingPanel);
+		});
+
+		const panel = document.getElementById('panel');
+		panel.style.height = window.innerHeight - event.clientY + 'px';
+	};
 };
 
 window.initResize = initResize;
