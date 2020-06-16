@@ -37,6 +37,7 @@ export const integrationFunctions = integrationConfig => {
 		apiFunctions[key] = {};
 
 		methods.forEach(method => {
+			// move to separate function
 			apiFunctions[key][method] = (id, config) => {
 				const urlWithParams = new URL(url);
 				const param = urlWithParams.pathname.match(/.*:(.*)\//);

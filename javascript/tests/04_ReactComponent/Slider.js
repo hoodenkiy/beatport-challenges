@@ -66,11 +66,13 @@ class Slider extends React.Component {
 	prevNext(action) {
 		if (action === 'prev') {
 			const lastSlide = this.state.slides.pop();
+
 			this.setState({
 				slides: [lastSlide, ...this.state.slides]
 			});
 		} else {
 			const firstSlide = this.state.slides.shift();
+
 			this.setState({
 				slides: [...this.state.slides, firstSlide]
 			});
